@@ -1,0 +1,1024 @@
+/* ---------------------- */
+/* Design of the launcher */
+/* ---------------------- */
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-button {
+	width: 4px;
+	height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #adadad;
+	border: 0px solid #ffffff;
+	border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb:active {
+	background: #909090;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-track:hover {
+	background: none;
+}
+
+::-webkit-scrollbar-track:active {
+	background: none;
+}
+
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+* {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+	margin: 0;
+	padding: 0;
+	font-family: Calibri;
+  background-repeat: no-repeat;
+  font-family: "Open Sans",Helvetica,Arial,sans-serif;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+  height: 100%;
+	width: 100%;
+}
+
+h1 {
+  max-width: calc(100% - 35px);
+  color: white;
+  font-weight: 100;
+  font-size: 18pt;
+  font-family: Calibri;
+}
+
+a {
+	text-decoration: none;
+  cursor: pointer;
+}
+
+.windowResize, .ui-icon, .ui-widget-content .ui-icon {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/img_re10.png');
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
+  cursor: nw-resize;
+  z-index: 10;
+}
+
+.windowResize:active {
+  cursor: nwse-resize;
+}
+
+#mainForm {
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+  background-size: 90%;
+  background-position: right -20px;
+  background-color: #242328;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/backsh11.jpg');
+  background-repeat: no-repeat;
+  min-width: 1365px;
+  min-height: 590px;
+}
+
+#editPicForm {
+  background-color: #283244;
+  min-width: 855px;
+  min-height: 575px;
+}
+
+#editFormHead {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  padding: 35px 0 0 35px;
+  border-bottom: 1px solid #3F5270;
+}
+
+.contentPic {
+  width: 100%;
+  height: calc(100% - 86px);
+  position: absolute;
+  top: 86px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#avatarsList-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+}
+
+.avatarItem {
+  display: block;
+  flex-basis: 130px;
+  height: 130px;
+  margin: 10px;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.otherForm {
+  position: absolute;
+  top: 5em;
+  bottom: auto;
+  right: auto;
+  left: 30%;
+  border: 1px solid #3F5270;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/border10.png');
+  background-size: 100% 137px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.betaRibbon {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/beta_r10.png');
+  width: 51px;
+  height: 51px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  z-index: 10;
+}
+
+.leftPanel {
+	background-color: rgba(0, 0, 0, 0.2901960784313726);
+	border-right: 1px solid rgba(169, 169, 169, 0.2196078431372549);
+  display: flex;
+	position: relative;
+	flex-direction: column;
+	width: 250px;
+  max-width: 250px;
+	overflow: hidden;
+	z-index: 2;
+	height: calc(100% - 72px);
+	overflow-x: hidden;
+}
+
+.topPanel {
+	border-bottom: 1px solid rgba(169, 169, 169, 0.2196078431372549);
+  display: flex;
+	position: relative;
+	flex-direction: row;
+	height: 70px;
+	width: 100%;
+	overflow: hidden;
+  -webkit-backdrop-filter: blur(0.4rem);
+  backdrop-filter: blur(0.4rem);
+	z-index: 2;
+}
+
+.controlBox {
+  position: absolute;
+  height: 25px;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  top: 5px;
+  left: auto;
+  right: 0;
+  bottom: auto;
+  z-index: 5;
+}
+
+.socialBox {
+  position: absolute;
+  width: auto;
+  max-height: 30px;
+  top: 24px;
+  bottom: auto;
+  left: auto;
+  right: 15px;
+  display: flex;
+  flex-direction: row;
+  z-index: 5;
+}
+
+.socialItm {
+  height: 20px;
+  min-width: 40px;
+  border: 1px solid #a9a9a938;
+  border-left: 0;
+  padding: 5px;
+  font-size: 10pt;
+  color: #ababab;
+  background-color: #00000042;
+}
+
+#socialProfile {
+  text-align: right;
+  width: 62px;
+  padding-right: 25px;
+  padding-top: 7px;
+  padding-bottom: 3px;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/arrow_13.png');
+  background-position: 72px 11px;
+}
+
+#socialPicBorder {
+  width: 10px;
+  border-bottom: 0;
+  border-right: 0;
+  min-width: 10px;
+}
+
+.socialPP {
+  background-image: url(https://wargodswow.com/assets/images/profiles/default.png);
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -20px;
+  top: -5px;
+  border-radius: 100%;
+}
+
+.socialVip {
+  box-sizing: border-box;
+    padding: 9px;
+    height: 32px;
+}
+
+#socialNotifs, #socialFriends {
+  width: 45px;
+  background-position: 10px 5px;
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 7px;
+  font-size: 12pt;
+  height: 18px!important;
+}
+
+#socialNotifs {
+  background-size: 25%;
+  background-position: 8px 8px;
+  width: 30px!important;
+  background-image: url(https://i48.servimg.com/u/f48/18/06/99/75/bell-i10.png);
+  min-width: auto;
+}
+
+#socialFriends {
+  background-image: url(https://i48.servimg.com/u/f48/18/06/99/75/menu-f10.png);
+  background-size: 33%;
+}
+
+.socialStatut {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  height: 10px;
+  width: 10px;
+}
+
+.onlineIcn {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/presen11.png');
+}
+
+.busyIcn {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/presen10.png');
+}
+
+.awayIcn {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/presen13.png');
+}
+
+.ghostIcn {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/presen12.png');
+}
+
+.windowStateItem {
+  background-position: center;
+  background-size: auto;
+  height: 100%;
+  width: 32px;
+  margin-right: 5px;
+}
+
+.minWindow {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi18.png');
+}
+
+.minWindow:hover {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi19.png');
+}
+
+.minWindow:active {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi20.png');
+}
+
+.maxWindow {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi14.png');
+}
+
+.maxWindow:hover {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi15.png');
+}
+
+.maxWindow:active {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi13.png');
+}
+
+.closeWindow {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi17.png');
+}
+
+.closeWindow:hover {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi11.png');
+}
+
+.closeWindow:active {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/btn_wi16.png');
+}
+
+.topPanel > .overlay {
+	background: #7171717d;
+}
+
+.logoBN {
+	background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/img_bl10.png');
+  cursor: pointer;
+  background-size: contain;
+	background-position: center;
+	width: 100px;
+	margin-left: 25px;
+	margin-right: 0;
+}
+
+.arrowBottom {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/arrow_10.png');
+	background-position: center;
+	width: 32px;
+	margin-left: -15px;
+	margin-right: 15px;
+  cursor: pointer;
+}
+
+.actlftPnlItm {
+	background-color: #ffffff17;
+	border-left: 5px solid #38a3ff;
+  color: white !important;
+  background-position: 30px 10px!important;
+  padding-left: 65px!important;
+}
+
+.activeMenu, .textMenu:hover {
+	text-shadow: 0 0 13px white;
+	color: white!important;
+}
+
+.topPanelItem {
+	z-index: 5;
+}
+
+.textMenu {
+	padding: 17px;
+  padding-top: 28px;
+	font-size: 16pt;
+	cursor: pointer;
+	text-transform: uppercase;
+  color: #ababab;
+}
+
+.moreMenu {
+  padding-left: 5px;
+}
+
+.leftPanelTitle {
+  color: white;
+	text-transform: uppercase;
+	padding: 0;
+	padding-top: 25px;
+	padding-left: 25px;
+	margin-bottom: 0;
+}
+
+.leftPanelItem {
+	padding: 12px;
+	padding-left: 70px;
+	color: gray;
+	font-size: 13pt;
+	margin: 0;
+	background-size: 30px;
+	background-position: 35px 10px;
+  font-weight: lighter;
+}
+
+.leftPanelItem:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: white !important;
+  padding-left: 70px;
+	background-position: 35px 10px;
+}
+.wowLogo {
+	background-image: url('https://cdn.discordapp.com/attachments/923607468804812920/927563838851801098/512x512.png');
+}
+
+#mainMenu {
+  top: 55px;
+	right: auto;
+	bottom: auto;
+	right: 76px;
+}
+
+#otherMenu {
+  top: 70px;
+	right: auto;
+	bottom: auto;
+	left: 635px;
+  height: 120px;
+}
+
+#socialMenu {
+  top: 70px;
+	right: 88px;
+	bottom: auto;
+	left: auto;
+  width: 150px;
+  height: 370px;
+}
+
+.socialServer, .socialNickname {
+  font-family: Calibri !important;
+  font-weight: lighter;
+}
+
+.socialNickname {
+  font-size: 16pt;
+  color: #54ACFF;
+}
+
+.socialServer {
+  color: gray;
+  font-size: 8pt;
+}
+
+.noFocus:hover {
+  background-color: transparent!important;
+}
+
+.blizzMenu {
+  flex-direction: column;
+	position: absolute;
+	height: 250px;
+	width: 210px;
+	background-color: #272E3B;
+	background-size: contain;
+  border: 1px solid #3C424E;
+	display: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+	z-index: 10;
+}
+
+.blizzMenu .active {
+  display: block;
+}
+
+.blizzMenuItem {
+  width: calc(100% - 35px);
+  margin-bottom: 5px;
+  color: #B3B3B3;
+  padding: 5px;
+  padding-left: 30px;
+  font-size: 11pt;
+}
+
+#otherMenu .blizzMenuItem {
+  width: calc(100% - 20px);
+  padding-left: 15px;
+}
+
+.socialInfos {
+  line-height: 14px;
+  margin-top: 5px;
+  padding-left: 15px;
+  margin-bottom: 10px!important;
+  width: calc(100% - 30px);
+  color: #B3B3B3;
+  padding-top: 2px;
+  padding-bottom: 0;
+  font-size: 11pt;
+}
+
+.blizzMenuItem:hover {
+  background-color: #323945;
+}
+
+.blizzMenuItemSpacer {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #3D434F;
+}
+
+.itm01, .itm02, .itm06 {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/icon_w10.png');
+}
+
+.itm01 {
+  background-position: 180px 6px;
+}
+
+.itm02 {
+  background-position: 90px 6px;
+}
+
+.itm06 {
+  background-position: 175px 7px;
+}
+
+.itm03, .itm07, .itm08 {
+  background-position: 8px 3px!important;
+}
+
+.blizzMenuItem.onlineIcn, .blizzMenuItem.awayIcn,  .blizzMenuItem.busyIcn, .blizzMenuItem.ghostIcn {
+  background-position: 10px 7px!important;
+}
+
+.itm03 {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/icon_m10.png');
+}
+
+.itm07 {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/icon_m11.png');
+}
+
+.itm08 {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/icon_m12.png');
+}
+
+.linkMenuItem, .socialServer, .socialNickname, .bnetLinks, .blizzMenuItem a, .focusProfile, .focusNotifs, .focusFriends {
+  cursor: context-menu;
+}
+
+.esportItem, .forumItem, .owLeagueItem {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/icon_w11.png');
+}
+
+.esportItem {
+  background-position: 95px 6px;
+}
+
+.forumItem {
+  background-position: 90px 6px;
+}
+
+.owLeagueItem {
+  background-position: 185px 6px;
+}
+
+.windowDecoration {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 8px;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.corner1 {
+  height: 100%;
+  width: 9px;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/corner11.png');
+}
+
+.corner2 {
+  height: 100%;
+  width: 16px;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/corner10.png');
+}
+
+.elm1 {
+  background-color: rgba(255, 255, 255, 0.10196078431372549);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10196078431372549);
+  height: calc(100% - 1px);
+  max-width: 87%;
+  min-width: 72%;
+}
+
+.mainPanel {
+  position: absolute;
+  top: 70px;
+  left: 250px;
+  right: 0;
+  bottom: 15px;
+  width: calc(100% - 250px);
+  height: calc(100% - 90px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 4;
+}
+
+.w3Main {
+
+}
+
+.gameLogo {
+
+  width: 275px;
+  height: 115px;
+
+  background-position: center;
+  background-size: contain;
+  top: 20px;
+  left: 20px;
+}
+
+.wowGl {
+  background-image: url('https://cdn.discordapp.com/attachments/923952696824848414/924629883022368788/Warlock_Logov3.12.png');
+}
+
+
+.controlGame {
+  background-color: #00000080;
+  height: 30px;
+  width: 230px;
+  position: absolute;
+  top: 155px;
+  left: 45px;
+  display: flex;
+  box-sizing: content-box;
+  flex-direction: row;
+  border-radius: 3px;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/arrow_11.png');
+  background-position: 80px 11px;
+}
+
+.elmCtrl {
+  height: 100%;
+  color: white;
+  padding: 5px;
+  font-size: 10pt;
+  padding-top: 7px;
+}
+
+.elmCtrolItm1 {
+  width: 20%;
+  padding-left: 30px;
+  padding-right: 25px;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/icon_m10.png');
+  background-position: 10px 7px;
+}
+
+.elmCtrolItm2 {
+  width: 100px;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/contex10.png') ;
+  padding-left: 25px;
+  background-position: 5px 5px;
+}
+
+.fullPanel {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.swipPanel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40%;
+  top: 170px;
+  padding-top: 20px;
+  padding-left: 15px;
+  overflow: hidden;
+  min-height: 280.8px;
+}
+
+.swipPanel.scroll {
+  overflow-x: scroll;
+}
+
+.swipForm {
+  height: 270px;
+  min-height: 270px;
+  max-height: 270px;
+  background-color: #172028;
+  margin-right: 20px;
+  border: 1px solid black;
+  box-shadow: 0 0 13px 5px #0000007d;
+}
+
+.mainSwip {
+  width: 478px;
+  min-width: 478px;
+  max-width: 478px;
+}
+
+.newsSwip {
+  width: 370px;
+}
+
+.changelogSwip {
+  width: 400px;
+}
+
+.secondSwip {
+  width: 239px;
+  min-width: 239px;
+  max-width: 239px;
+}
+
+.contentSwip {
+  box-shadow: inset 0 0 0px 1px #ffffff2e;
+  height: calc(100% - 1px);
+  width: 100%;
+  box-sizing: content-box;
+  padding-top: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.changelogSwip .contentSwip {
+  box-sizing: border-box;
+  overflow-y: scroll;
+  box-shadow: none;
+  color: #A3A3A6!important;
+  padding: 10px;
+}
+
+.changelogSwip .contentSwip span {
+  color: #A3A3A6;
+}
+
+.promoWOW {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/promow10.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.promoOW {
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/owprom10.png');
+  background-size: cover;
+  background-position: center;
+}
+
+video.VideoPane-video {
+  height: 268px;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+}
+
+.bottomPanel {
+  width: calc(100% - 20px);
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  top: auto;
+}
+
+
+.clearStorage {
+  background-color: #ef4135;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ef4135), to(#af2401));
+  background-image: linear-gradient(#ef4135, #af2401);
+  height: 35px;
+  width: 180px;
+  position: absolute;
+  bottom: 100px;
+  right: 5px;
+  color: white;
+  padding: 18px 24px;
+  text-align: center;
+  font-size: 12pt;
+  border-radius: 3px;
+  background-repeat-x: repeat;
+  background-size: contain;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.playButton {
+  background-color: #0f98d8;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0f98d8), to(#0178af));
+  background-image: linear-gradient(#0f98d8, #0178af);
+  height: 75px;
+  width: 220px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  padding: 18px 24px;
+  text-align: center;
+  font-size: 23pt;
+  border-radius: 3px;
+  border: none;
+  background-size: contain;
+  text-transform: uppercase;
+  font-weight: 100;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.playButton:disabled,
+button[disabled] {
+  background-color:#707070;
+  background-image: none;
+  cursor: not-allowed;
+}
+
+.infoSwip {
+  background-color: #341703;
+}
+
+.headerInfoSwip {
+  width: calc(100% - 20px);
+  height: 35px;
+  background-color: #562602;
+  margin: 1px;
+  margin-top: 0;
+  border-bottom: 1px solid #ffffff14;
+  background-position: 10px 8px;
+  padding-left: 20px;
+  padding-top: 15px;
+  color: white;
+  font-weight: lighter;
+}
+
+.contentInfo {
+  padding: 15px;
+  color: #A3A3A6;
+  font-size: 11pt;
+  overflow: scroll;
+  height: calc(100% - 90px);
+  width: calc(100% - 35px);
+  text-align: justify;
+  word-break: break-all;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
+
+.contentInfo span {
+  color: #A3A3A6;
+}
+
+.contentMS {
+  width: 100%;
+  background-image: url('https://i48.servimg.com/u/f48/18/06/99/75/ufbnzv10.jpg');
+  background-size: cover;
+}
+
+/* --------------- */
+/* Loading Spinner */
+/* --------------- */
+
+#loading {
+    display: block;
+    box-sizing: content-box;
+    position: absolute;
+    top: 50%;
+}
+
+.loadCircle {
+  width: 32px;
+  height: 32px;
+  animation-name: loadingBNET1;
+}
+
+.loadCircle, .loadingBNET::before, .loadingBNET::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  perspective: 600px;
+  border-top-width: 4px;
+  border-left-width: 2px;
+  border-top-color: #04AFFF;
+  border-left-color: #04AFFF;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-radius: 32px;
+  width: 32px;
+  height: 32px;
+  animation-duration: 700ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.loadingBNET::before {
+  animation-name: loadingBNET2;
+}
+
+.loadingBNET::after {
+  animation-name: loadingBNET3;
+}
+
+@keyframes loadingBNET1 {
+  0% {
+    transform: rotateX(65deg) rotateZ(45deg);
+  }
+  100% {
+    transform: rotateX(65deg) rotateZ(405deg);
+  }
+}
+
+@keyframes loadingBNET2 {
+  0% {
+    transform: rotateX(-45deg) rotateY(45deg) rotateZ(180deg);
+  }
+  100% {
+    transform: rotateX(-45deg) rotateY(45deg) rotateZ(540deg);
+  }
+}
+
+@keyframes loadingBNET3 {
+  0% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(270deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(630deg);
+  }
+}
+
+/* -------------------- */
+/* Adaptation à l'écran */
+/* -------------------- */
+
+@media screen and (max-height: 720px) {
+  .gameLogo {
+    display: none;
+  }
+  .controlGame {
+    top: 10px;
+  }
+  .swipPanel {
+    top: 55px;
+  }
+}
+
+/* -------------------- */
+/* -------- FIN ------- */
+/* -------------------- */
+
+button {
+  padding: 10px 20px;
+  background-color: #0f98d8;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#0f98d8), to(#0178af));
+  background-image: linear-gradient(#0f98d8, #0178af);
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.smallCard {
+  box-sizing: border-box;
+  padding: 20px;
+}
